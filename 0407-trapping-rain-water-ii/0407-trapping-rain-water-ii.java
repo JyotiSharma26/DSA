@@ -1,7 +1,7 @@
 class Solution {
 
     public int trapRainWater(int[][] heightMap) {
-        // left,right,down, up
+        
         int dir[][] = { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 } };
         int rows = heightMap.length;
         int cols = heightMap[0].length;
@@ -9,7 +9,7 @@ class Solution {
             return 0;
         int totalUnvisitedCells = rows * cols;
         boolean[][] visited = new boolean[rows][cols];
-        // [hight, row, col] -> inc order of height
+        
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
 
         for (int i = 0; i < rows; i++) {
@@ -38,11 +38,11 @@ class Solution {
             int currentRow = currentCell[1];
             int currentCol = currentCell[2];
             waterLevel = Math.max(waterLevel, currentHeight);
-            // Explore all 4 neighboring cells
+            
             for (int direction = 0; direction < 4; direction++) {
                 int neighborRow = currentRow + dir[direction][0];
                 int neighborCol = currentCol + dir[direction][1];
-                // Check if the neighbor is within the grid bounds and not yet visited
+               
                 if (isValidCell(neighborRow, neighborCol, rows, cols) && !visited[neighborRow][neighborCol]) {
                     int neighborHeight = heightMap[neighborRow][neighborCol];
                     if (neighborHeight < waterLevel) {
